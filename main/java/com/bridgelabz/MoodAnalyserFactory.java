@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
@@ -13,6 +14,19 @@ public class MoodAnalyserFactory {
         } catch (NoSuchMethodException e) {
             throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NO_SUCH_METHOD, "Method not found");
         }
+    }
+
+    public static MoodAnalyser createMoodAnalyserObject(Constructor constructor, Object... objects) throws MoodAnalysisException {
+        try {
+            return (MoodAnalyser) constructor.newInstance(objects);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

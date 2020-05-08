@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.Objects;
+
 import static com.bridgelabz.MoodAnalysisException.ExceptionType.ENTERED_EMPTY;
 import static com.bridgelabz.MoodAnalysisException.ExceptionType.ENTERED_NULL;
 
@@ -26,5 +28,14 @@ public class MoodAnalyser {
             throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL,"Mood Cannot be Empty or Null");
         }
     }
+
+    public boolean equals (Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MoodAnalyser that = (MoodAnalyser) o;
+        return Objects.equals(message, that.message);
+    }
+
 }
+
 
